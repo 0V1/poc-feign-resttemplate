@@ -19,7 +19,10 @@ public class LogInterceptor implements ClientHttpRequestInterceptor {
         log.info("=========>goto LogInterceptor:<============");
         log.info("request:{}", request);
         log.info("body:{}", body);
-        return execution.execute(request, body);
+        ClientHttpResponse clientHttpResponse = execution.execute(request, body);
+        log.info("response.headers:{}", clientHttpResponse.getHeaders());
+        log.info("response.body:{}", clientHttpResponse.getBody());
+        return clientHttpResponse;
     }
 }
 

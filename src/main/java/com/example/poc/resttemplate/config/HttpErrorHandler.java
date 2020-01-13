@@ -1,5 +1,6 @@
 package com.example.poc.resttemplate.config;
 
+import com.example.poc.resttemplate.exception.RestTemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
@@ -37,7 +38,10 @@ public class HttpErrorHandler implements ResponseErrorHandler {
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
         log.error("=============>handleError:{}<=============", response);
-        throw new IOException("mock error");
-
+        if(response.getStatusCode().is4xxClientError()){
+            throw new RestTemplateException("400啦！！！");
+        }else if (response.getStatusCode().is5xxServerError()){
+            throw new RestTemplateException("500啦！！！");
+        }
     }
 }

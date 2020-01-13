@@ -1,6 +1,5 @@
 package com.example.poc.resttemplate.config;
 
-import com.example.poc.resttemplate.exception.ResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

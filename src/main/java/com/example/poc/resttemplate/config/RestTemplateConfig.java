@@ -14,7 +14,8 @@ public class RestTemplateConfig {
 
     @Bean(name = "myRestTemplate")
     public RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder){
-        RestTemplate restTemplate = restTemplateBuilder.additionalInterceptors(new LogInterceptor())
+        RestTemplate restTemplate = restTemplateBuilder
+                .additionalInterceptors(new LogInterceptor())
                 .additionalInterceptors(new ResponseInterceptor())
                 .errorHandler(new HttpErrorHandler())
                 .build();
